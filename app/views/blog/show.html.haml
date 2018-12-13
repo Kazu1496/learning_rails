@@ -1,0 +1,21 @@
+%h1
+  Title
+  = @blog.title
+- if @entrys.present?
+  %table
+    %caption Listing entries
+    %thead
+      %tr
+        %th Title
+        %th Body
+    %tbody
+      - @entrys.each do |entry|
+        %tr
+          %td= entry.title
+          %td= entry.body
+          %td
+            = link_to "Show", "/blog/#{@blog.id}/entry/#{entry.id}"
+            = link_to "Edit", "/blog/#{@blog.id}/entry/#{entry.id}", method: "put"
+            = link_to "Delete", "/blog/#{@blog.id}/entry/#{entry.id}", method: "delete"
+
+= link_to "New Entry", "/blog/#{@blog.id}/entry/new"

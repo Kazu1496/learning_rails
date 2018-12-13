@@ -1,0 +1,33 @@
+%h1= @blog.title
+%p
+  Title:
+  = @blog.entry.find(params[:id]).title
+%p
+  Body:
+  = @blog.entry.find(params[:id]).body
+%hr
+%table
+  %caption Listing comments
+  %thead
+    %tr
+      %th Body
+  %tbody
+    - @blog.entry.find(params[:id]).comment.each do |comment|
+      %tr
+        - if comment.status == "approved"
+          %td= comment.body
+        - else
+          %td (承認待ち)
+        %td
+          = link_to comment.status, "/blog/#{@blog.id}/entry/#{@entry.id}/comment/#{comment.id}/toggle_status", method: :post
+        %td
+          = link_to "Destroy", "/blog/#{@blog.id}/entry/#{@entry.id}/comment/#{comment.id}/destroy", method: :delete
+
+%p New comments
+= form_for [@blog, @entry, @comment], url: { controller: :comment, action: :create, entry_id: @entry.id} do |f|
+  = f.label :body
+  = f.text_field :body
+  = f.label :status
+  = f.select :status, ["approved","unapproved"]
+  = button_tag type: "submit" do
+    Save
