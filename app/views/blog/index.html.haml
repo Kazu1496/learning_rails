@@ -4,8 +4,8 @@
   - @blogs.each do |blog|
     %li
       = blog.title
-      = link_to "Show", "/blog/#{blog.id}"
-      = link_to "Edit", "/blog/#{blog.id}", method: "put"
-      = link_to "Delete", "/blog/#{blog.id}", method: "delete"
+      = link_to "Show", blog_path(blog.id)
+      = link_to "Edit", "/blog/#{blog.id}", method: :post
+      = link_to "Delete", blog_path(blog.id), method: :delete
 
 = link_to "New Blog", new_blog_path

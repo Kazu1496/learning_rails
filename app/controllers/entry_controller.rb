@@ -13,13 +13,21 @@ class EntryController < ApplicationController
   end
 
   def create
-    Entry.create(create_entry_params)
-    redirect_to controller: :blog, action: :index
+    entry = Entry.new(create_entry_params)
+    respond_to do |format|
+      if entry.save
+        format.html { redirect_to blog_path(params[:blog_id]), notice: 'エントリーを作成しました。' }
+      else
+        format.html { redirect_to new_blog_entry_path(params[:blog_id]), notice: 'エントリーを作成できませんでした。値を正しく入力してください。' }
+      end
+    end
   end
 
   def destroy
     Entry.delete(params[:id])
-    redirect_to '/'
+    respond_to do |format|
+      format.html { redirect_to blog_path(params[:blog_id]), notice: 'ブログを削除しました。' }
+    end
   end
 
   private

@@ -1,6 +1,7 @@
 %h1
   New entry
   = @blog.title
+= link_to 'Back', :back
 = form_for [@blog, @entry], url: { action: :create } do |f|
   = f.label :title
   = f.text_field :title

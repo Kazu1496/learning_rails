@@ -1,6 +1,7 @@
 %h1
   Title
   = @blog.title
+= link_to 'Back', :back
 - if @entrys.present?
   %table
     %caption Listing entries
@@ -15,7 +16,7 @@
           %td= entry.body
           %td
             = link_to "Show", "/blog/#{@blog.id}/entry/#{entry.id}"
-            = link_to "Edit", "/blog/#{@blog.id}/entry/#{entry.id}", method: "put"
-            = link_to "Delete", "/blog/#{@blog.id}/entry/#{entry.id}", method: "delete"
+            = link_to "Edit", "/blog/#{@blog.id}/entry/#{entry.id}", method: :post
+            = link_to "Delete", "/blog/#{@blog.id}/entry/#{entry.id}", method: :delete
 
 = link_to "New Entry", "/blog/#{@blog.id}/entry/new"

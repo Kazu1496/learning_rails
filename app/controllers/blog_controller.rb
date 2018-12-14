@@ -8,17 +8,25 @@ class BlogController < ApplicationController
   def new;end
 
   def show
-    @blog = Blog.find_by(id: params['id'])
+    @blog = Blog.find(params['id'])
     @entrys = Entry.where(blog_id: params['id'])
   end
 
   def create
-    Blog.create(title: params['title'])
-    redirect_to '/'
+    blog = Blog.new(title: params['title'])
+    respond_to do |format|
+      if blog.save
+        format.html { redirect_to root_path, notice: 'ブログを作成しました。' }
+      else
+        format.html { redirect_to new_blog_path, notice: 'ブログを作成できませんでした。値を正しく入力してください。' }
+      end
+    end
   end
 
   def destroy
     Blog.delete(params[:id])
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'ブログを削除しました。' }
+    end
   end
 end

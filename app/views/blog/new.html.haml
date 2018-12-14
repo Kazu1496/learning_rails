@@ -1,5 +1,6 @@
 %h1 New Blog
-%form{ action: :create, method: "post"}
+= link_to 'Back', :back
+%form{ action: :create, method: :post}
   %label Title
   %input{ name: "title"}
   %input{ type: "submit", value: "Save"}
