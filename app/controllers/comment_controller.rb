@@ -5,7 +5,7 @@ class CommentController < ApplicationController
     comment = Comment.new(create_comment_params)
     respond_to do |format|
       if comment.save
-        NotificationMailer.send_confirm_to_user(@blog, @entry, comment).deliver
+        NotificationMailer.notification(@blog, @entry, comment).deliver
         format.html { redirect_to blog_entry_path(params[:blog_id], params[:entry_id]), notice: 'コメントを作成しました。' }
       else
         format.html { redirect_to blog_entry_path(params[:blog_id], params[:entry_id]), notice: 'コメントを作成できませんでした。値を正しく入力して下さい。' }

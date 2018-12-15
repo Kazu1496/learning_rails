@@ -1,5 +1,5 @@
 %h1= @blog.title
-= link_to 'Back', :back
+= link_to 'Back', blog_path(@blog)
 %p
   Title:
   = @blog.entry.find(params[:id]).title
