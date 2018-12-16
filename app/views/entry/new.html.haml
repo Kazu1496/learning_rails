@@ -2,10 +2,8 @@
   New entry
   = @blog.title
 = link_to 'Back', :back
-= form_for [@blog, @entry], url: { action: :create } do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :body
-  = f.text_field :body
-  = button_tag type: "submit" do
-    Save
+
+= simple_form_for([@blog, @entry], url: { action: :create }) do |f|
+  = f.input :title, label: "Title"
+  = f.input :body, label: "Body"
+  = f.button :submit, value: "Save"

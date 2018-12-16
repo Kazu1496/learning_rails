@@ -1,6 +1,6 @@
 %h1 New Blog
-= link_to 'Back', :back
-%form{ action: :create, method: :post}
-  %label Title
-  %input{ name: "title"}
-  %input{ type: "submit", value: "Save"}
+= link_to 'Back', root_path
+
+= simple_form_for @blog, url: {action: :create} do |f|
+  = f.input :title, label: 'Title'
+  = f.button :submit, value: 'Save'

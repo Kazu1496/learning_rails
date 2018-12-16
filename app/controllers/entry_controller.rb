@@ -31,7 +31,7 @@ class EntryController < ApplicationController
   end
 
   private
-  def create_entry_params
-    params.require(:entry).permit(:title, :body).merge(blog_id: params[:blog_id])
-  end
+    def create_entry_params
+      params.require(:entry).permit(:title, :body).merge(blog_id: params[:blog_id])
+    end
 end

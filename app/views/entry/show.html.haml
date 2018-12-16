@@ -25,10 +25,7 @@
           = link_to "Destroy", "/blog/#{@blog.id}/entry/#{@entry.id}/comment/#{comment.id}/destroy", method: :delete
 
 %p New comments
-= form_for [@blog, @entry, @comment], url: { controller: :comment, action: :create, entry_id: @entry.id} do |f|
-  = f.label :body
-  = f.text_field :body
-  = f.label :status
-  = f.select :status, ["approved","unapproved"]
-  = button_tag type: "submit" do
-    Save
+= simple_form_for([@blog, @entry, @comment], url: { controller: :comment, action: :create, entry_id: @entry.id}) do |f|
+  = f.text_field :body, label: "Body"
+  = f.select :status, ["approved","unapproved"], label: "Status"
+  = f.button :submit, value: "Save"

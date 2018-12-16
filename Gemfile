@@ -28,6 +28,7 @@ gem 'haml-rails'
 gem 'hirb'         # モデルの出力結果を表形式で表示するGem
 gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
 
+gem 'simple_form'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
