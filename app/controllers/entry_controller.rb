@@ -1,6 +1,17 @@
 class EntryController < ApplicationController
   protect_from_forgery :except => [:create]
 
+  def index
+    @blog = Blog.find(params[:blog_id])
+    @entries = @blog.entry.where(params[:id])
+    datatime = Date.today
+    respond_to do |format|
+      format.csv do
+        send_data render_to_string, filename: "Blog_#{@blog.id}_entry_#{datatime}.csv", type: :csv
+      end
+    end
+  end
+
   def new
     @blog = Blog.find(params[:blog_id])
     @entry = Entry.new

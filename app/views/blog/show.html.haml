@@ -2,7 +2,7 @@
   Title
   = @blog.title
 = link_to 'Back', root_path
-- if @entrys.present?
+- if @entries.present?
   %table
     %caption Listing entries
     %thead
@@ -10,7 +10,7 @@
         %th Title
         %th Body
     %tbody
-      - @entrys.each do |entry|
+      - @entries.each do |entry|
         %tr
           %td= entry.title
           %td= entry.body
@@ -19,4 +19,5 @@
             = link_to "Edit", "/blog/#{@blog.id}/entry/#{entry.id}", method: :post
             = link_to "Delete", "/blog/#{@blog.id}/entry/#{entry.id}", method: :delete
 
-= link_to "New Entry", "/blog/#{@blog.id}/entry/new"
+= link_to "New Entry", new_blog_entry_path(@blog.id)
+= link_to "CSVダウンロード", blog_entry_index_path(@blog.id, format: :csv)

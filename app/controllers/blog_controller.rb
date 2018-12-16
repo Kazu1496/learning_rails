@@ -11,7 +11,7 @@ class BlogController < ApplicationController
 
   def show
     @blog = Blog.find(params['id'])
-    @entrys = Entry.where(blog_id: params['id'])
+    @entries = Entry.where(blog_id: params['id'])
   end
 
   def create
